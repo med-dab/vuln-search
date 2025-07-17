@@ -1,0 +1,24 @@
+<html>
+<body>
+<p>Welcome {{ user.id }} | <a href="/logout">Logout</a></p>
+<form method="POST">
+  <input name="equipment" placeholder="e.g. Cisco, Apache">
+  <button type="submit">Search</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% for msg in messages %}
+    <p style="color:red">{{ msg }}</p>
+  {% endfor %}
+{% endwith %}
+
+{% if results %}
+<h3>Results:</h3>
+<ul>
+{% for item in results %}
+  <li><b>{{ item.title }}</b> - {{ item.description }} ({{ item.source }})</li>
+{% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
